@@ -41,7 +41,7 @@ pub fn main() !void {
     while (args.next()) |arg| {
         if (std.mem.eql(u8, arg, "--help") or std.mem.eql(u8, arg, "-h")) {
             @setEvalBranchQuota(2000);
-            std.io.getStdOut().writer().print(
+            std.fs.File.stdin().deprecatedWriter().print(
                 \\Utility to generate a Zig binding from the Vulkan XML API registry.
                 \\
                 \\The most recent Vulkan XML API registry can be obtained from
