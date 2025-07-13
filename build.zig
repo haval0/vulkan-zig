@@ -13,9 +13,11 @@ pub fn build(b: *std.Build) void {
     // a file source to the generated code with `.addOutputArg("vk.zig")`
     const generator_exe = b.addExecutable(.{
         .name = "vulkan-zig-generator",
-        .root_source_file = b.path("src/main.zig"),
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/main.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
     });
     b.installArtifact(generator_exe);
 
