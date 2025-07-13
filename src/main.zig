@@ -8,7 +8,7 @@ fn invalidUsage(prog_name: []const u8, comptime fmt: []const u8, args: anytype) 
 }
 
 fn reportParseErrors(tree: std.zig.Ast) !void {
-    const stderr = std.io.getStdErr().writer();
+    const stderr = std.fs.File.stderr().deprecatedWriter();
 
     for (tree.errors) |err| {
         const loc = tree.tokenLocation(0, err.token);
